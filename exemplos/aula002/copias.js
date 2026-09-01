@@ -10,4 +10,4 @@ console.log({original, atualizado});
 
 const {nome,estoque} = atualizado;
 
-console.log(`${nome} possui ${estoque} unidade(s)`)
+console.log(`${nome} possui ${estoque} unidade(s)`);
