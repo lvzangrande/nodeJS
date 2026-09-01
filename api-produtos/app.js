@@ -1,4 +1,5 @@
 const arquivoDeConfiguracao = process.argv[2];
+const idInformada = process.argv[3];
 
 let configuracaoCarregada = true;
 
@@ -15,18 +16,10 @@ if (arquivoDeConfiguracao){
 }
 
 const obrigatorias = ['PORT','NOME_ALUNO','TURMA'];
-const ausentes = [];
 
-for (const nome of obrigatorias){
+const ausentes = obrigatorias.filter((nome)=>!process.env[nome]?.trim());
 
-    const valor = process.env[nome];
-
-    if(typeof valor !== 'string' || valor.trim()===''){
-        ausentes.push
-    }
-}
-
-if(configuracaoCarregada && ausentes.length>0){
+if(configuracaoCarregada && ausentes.length){
     console.error(`Configure no .env${ausentes.join(',')}`);
     process.exitCode = 1
 }
@@ -43,6 +36,51 @@ else if(configuracaoCarregada){
     });
 
     console.log('Ambiente configurado com sucesso!')
-
-    
 }
+
+const produtos = [
+    {id:1,nome:'Mouse',preco:80,estoque:2,categoria:'Periféricos'},
+    {id:2,nome:'Monitor',preco:900,estoque:18,categoria:'Vídeo'},
+    {id:3,nome:'Teclado',preco:120,estoque:127,categoria:'Periféricos'}
+];
+
+const esperar = (ms) => new Promise(
+    (resolve)=>setTimeout(resolve, ms)
+);
+
+async function buscarProdutosPorId(id) {
+    await esperar(100)    
+    if(!Number.isInteger(id)){
+        throw new Error('Identificador inteiro exigido');
+    }
+    const produto = produtos.find((item)=>item.id === id);
+    if (!produto){
+        throw new Error(`Produto ${id} não encontrado`);
+    }
+    return{...produto};
+}
+
+async function listarCategorias() {
+    await esperar(100);
+    const categorias = produtos.map(({categoria}) => categoria);
+    return [...new Set(categorias)];//new Set -- impede a criação de duplicar a informação
+}
+
+async function executar() {
+    if(!configuracaoCarregada) return;
+    try{
+        const id = Number(idInformada ?? 1);
+        const [produto, categorias] = await Promise.all([
+            buscarProdutosPorId(id),
+            listarCategorias()
+        ])
+        console.log('Produto: ', produto);
+        console.log('Valor em estoque: ',produto.preco * produto.estoque);
+        console.log('Categorias',categorias)
+    } catch (erro){
+        console.error(erro.message);
+        process.exitCode = 1;
+    }
+}
+
+executar();
