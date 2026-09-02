@@ -5,9 +5,11 @@ const catalogoDaBiblioteca = [
 ];
 
 const tipoDesejado = process.argv[2] || 'Livro';
-
-console.log('Entrada da busca:', { tipoDesejado, total: catalogoDaBiblioteca.length });
+try{
+const res = catalogoDaBiblioteca.filter((tombo)=>tombo.disponivel === true && tombo.tipo === tipoDesejado).map((tombo)=>({tombo: tombo.tombo,titulo: tombo.titulo }));
+console.log('Entrada da busca: ', {tipoDesejado, total: res });
+} catch{
 console.error('PENDENTE: filtre itens disponíveis e projete tombo e título.');
-process.exitCode = 1;
+process.exitCode = 1;}''
 
 // TODO: substitua as três linhas acima usando filter e map, sem alterar o catálogo.
