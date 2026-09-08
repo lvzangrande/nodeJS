@@ -5,8 +5,8 @@ import { formatarMoeda } from "./utils/formatarMoeda.js";
 async function executar() {
     try{
         const configuracao =  carregarAmbiente(process.argv[2]);
-        const idSolicitado = carregarAmbiente(process.argv[3]);
-        if(!Number.isInteger(idSoli)){
+        const idSolicitado = Number(process.argv[3] || '1');
+        if(!Number.isInteger(idSolicitado)){
             throw new Error('Informar um identificador inteiro pra o produto');
         }
         exibirDiagnostico(configuracao);
@@ -21,7 +21,7 @@ async function executar() {
             preco:produto.preco,
             estoque:produto.estoque,
             categoria:produto.categoria,
-            valorEmEstoque: produto.calcularPrecoComDesconto()
+            valorEmEstoque: produto.calcularValorEmEstoque()
             },
             categorias
         })

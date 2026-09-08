@@ -22,10 +22,10 @@ export function carregarAmbiente(arquivoDeConfiguracao){
         ambiente: process.env.NODE_ENV || 'development'
     }
 }
-    export function exibirDiagnostico(configuraçao){
+    export function exibirDiagnostico(configuracao){
     console.table({
-            estudante: configuraçao.nomeAluno,
-            turma: configuraçao.turma,
+            estudante: configuracao.nomeAluno,
+            turma: configuracao.turma,
             projeto: 'api-produtos',
             node: process.version,
             sistema: `${process.platform} ${process.arch}`,

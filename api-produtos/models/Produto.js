@@ -16,7 +16,7 @@ export default class Produto{
             throw new TypeError('Categoria é obrigatória');
         }
         Object.assign(this, {
-            id, nome: nome.trim,preco:preco,estoque:estoque, categoria:categoria.trim()
+            id, nome: nome.trim(),preco:preco,estoque:estoque, categoria:categoria.trim()
         });
     }
         calcularValorEmEstoque(){
@@ -26,7 +26,7 @@ export default class Produto{
             if (!Number.isFinite(percentual) || percentual < 0 || percentual > 100){
                 throw new RangeError('Desconto deve estar entre 0 e 100');
             }
-            return  this.preco * (1 - percentual / 100);''
+            return  this.preco * (1 - percentual / 100);
         }
         
     }
