@@ -1,7 +1,7 @@
 import { formatarMoeda } from './formatarMoeda.js';
 
 const valorDaFerramenta = Number(process.argv[2] || '149.9');
-
+//verificação
 try {
   console.log(`Furadeira: ${formatarMoeda(valorDaFerramenta)}`);
 } catch (erro) {
