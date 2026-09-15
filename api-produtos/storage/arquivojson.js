@@ -7,7 +7,7 @@ export async function lerJson(caminho) {
     let texto;
     //verifica se leitura é possível
     try{
-        texto = await readFile(caminho,utf8);
+        texto = await readFile(caminho,'utf8');
     }catch(erro){
         if(erro.code==='ENOENT') return[];
         throw erro;
@@ -18,7 +18,7 @@ export async function lerJson(caminho) {
         if(!Array.isArray(dados)){
             throw new TypeError('O catálogo JSON deve conter um array');
         }
-
+        return dados;
     } catch (erro) {
         if (erro instanceof SyntaxError){
             throw new SyntaxError(`JSON inválido em ${basename(caminho)}`)
