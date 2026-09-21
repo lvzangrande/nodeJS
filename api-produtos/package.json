@@ -4,21 +4,21 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start":"node app.js .env 1",
-    
+    "start": "node app.js .env 1",
     "buscar": "node app.js .env buscar",
     "categorias": "node app.js .env categorias",
-    "criar":"node app.js .env criar",
-
-    "check":"node scripts/check.js",
-
-    "diagnostico":"node app.js",
-    "produto-ausente":"node app.js .env buscar 999",
-    "id-invalido":"node app.js .env buscar abc"
+    "criar": "node app.js .env criar",
+    "check": "node scripts/check.js",
+    "diagnostico": "node app.js",
+    "produto-ausente": "node app.js .env buscar 999",
+    "id-invalido": "node app.js .env buscar abc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
-  "private":true
+  "private": true,
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
