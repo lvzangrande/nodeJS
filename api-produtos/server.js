@@ -1,12 +1,10 @@
-import express from 'express';
+import { carregarAmbiente } from './config/ambiente.js';
 
-const app = express();
-const port = 3000;
+const config = carregarAmbiente('.env');
 
-app.get('/',(req, res)=>{//rota e req -> requesição ~~ res -> resposta
-    res.send('<h1>Primeiro servidor</h1>');
+const { app } = await import('./app.js');
+const porta = config.porta || 3000;
+
+app.listen(porta,()=>{
+    console.log(`Server rodando em http://localhost:${porta}`)
 });
-
-app.listen(port,()=>{
-    console.log(`Servidor rodando em: http://localhost:${port}`);
-});//
