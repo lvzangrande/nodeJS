@@ -1,4 +1,5 @@
-const nomesObrigatorios = ['PORT','NOME_ALUNO','TURMA'];
+const nomesObrigatorios = ['PORT','DB_HOST','DB_USER','DB_PORT','DB_NAME'];
+//DB_PASS: Vazia, e não aceita senha vazia pois o default é ("")->Vazia
 
 export function carregarAmbiente(arquivoDeConfiguracao){
     if (arquivoDeConfiguracao){
