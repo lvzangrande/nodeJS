@@ -1,5 +1,10 @@
 import express from 'express';
-import { produtoRoutes } from './routes/produtoRoutes.js';
+
+import {criarPool} from './config/database.js';
+import {criarProdutoModel} from './models/ProdutoModels.js'
+import { criarProdutoService } from './services/ProdutoService.js'
+import { criarProdutoController } from './controllers/ProdutoController';
+import { criarProdutoRoutes } from './routes/produtoRoutes.js';
 
 export const app = express();
 
