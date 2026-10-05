@@ -11,6 +11,11 @@ export const app = express();
 app.use(express.json());//reqs em json
 // Middleware: ensina o Express a ler o corpo da requisiçãop e, JSON
 // middleware programas menores destinados a desempenhar uma função específica
+const pool = criarPool();
+const produtoModel = criarProdutoModel({pool});
+const produtoService = criarProdutoService({produtoModel})
+const produtoController = criarProdutoController({produtoService})
+const produtoRoutes = criarProdutoRoutes({ produtoController })
 
 app.use(express());
 app.get('/api/check',(req,res)=>{
